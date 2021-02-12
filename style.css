@@ -33,8 +33,9 @@ svg {
   z-index: 10;
   transform: scale(0.85) translate3d(85%, -10%, 0);
 }
+
 .moveOneToTwo {
-  animation: 1s ease-in one2two forwards;
+  animation: 1s ease one2two forwards;
 }
 
 .slot2 {
@@ -46,7 +47,7 @@ svg {
 }
 
 .moveTwoToThree {
-  animation: 1s ease-in two2three forwards;
+  animation: 1s ease two2three forwards;
 }
 
 .slot3 {
@@ -59,15 +60,8 @@ svg {
 }
 
 .moveThreeToOne {
-  animation: 1s ease-in three2one forwards;
+  animation: 1s ease three2one forwards;
 }
-
-/* .tile {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(255, 255, 255, 0.5);
-} */
 
 .btn-group {
   display: flex;
@@ -95,20 +89,18 @@ svg {
 
   100% {
     z-index: 10;
-    transform: scale(0.85) translate3d(40%, -10%, 0);
+    transform: scale(0.85) translate3d(33%, -10%, 0);
   }
 }
 
 @keyframes three2one {
   0% {
-    grid-column: 3;
-    grid-row: 1;
+    z-index: 10;
     transform: scale(0.85) translate3d(-85%, -10%, 0);
   }
 
   100% {
-    grid-column: 1;
-    grid-row: 1;
+    z-index: 10;
     transform: scale(0.85) translate3d(-150%, -10%, 0);
   }
 }

@@ -28,8 +28,8 @@ function rotateEggs() {
 
   function moveOneToTwo() {
     console.log("animation done");
-    eggInSlot2.classList.remove("slot1", "moveOneToTwo");
-    eggInSlot2.classList.add("slot2");
+    eggInSlot1.classList.remove("slot1", "moveOneToTwo");
+    eggInSlot1.classList.add("slot2");
   }
   function moveTwoToThree() {
     console.log("animation done");
@@ -38,8 +38,8 @@ function rotateEggs() {
   }
   function moveThreeToOne() {
     console.log("animation done");
-    eggInSlot2.classList.remove("slot3", "moveThreeToOne");
-    eggInSlot2.classList.add("slot1");
+    eggInSlot3.classList.remove("slot3", "moveThreeToOne");
+    eggInSlot3.classList.add("slot1");
   }
 }
 
