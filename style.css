@@ -25,7 +25,7 @@ svg {
   grid-template: 1fr / 1fr 1fr 1fr;
 }
 
-.slot1 {
+.slot-one {
   will-change: transform;
   grid-column: 1;
   grid-row: 1;
@@ -35,11 +35,7 @@ svg {
   transform: scale(0.85) translate3d(85%, -10%, 0);
 }
 
-.moveOneToTwo {
-  animation: 1s ease one2two forwards;
-}
-
-.slot2 {
+.slot-two {
   will-change: transform;
   grid-column: 2;
   grid-row: 1;
@@ -48,11 +44,7 @@ svg {
   z-index: 100;
 }
 
-.moveTwoToThree {
-  animation: 1s ease two2three forwards;
-}
-
-.slot3 {
+.slot-three {
   will-change: transform;
   grid-column: 3;
   grid-row: 1;
@@ -62,20 +54,17 @@ svg {
   transform: scale(0.85) translate3d(-85%, -10%, 0);
 }
 
-.moveThreeToOne {
-  animation: 1s ease three2one forwards;
-}
-
 .btn-group {
   display: flex;
   gap: 40px;
   padding: 50px;
 }
 
+/* To The Right */
+
 @keyframes one2two {
   0% {
     z-index: 10;
-    transform: scale(0.85) translate3d(85%, -10%, 0);
   }
 
   100% {
@@ -87,7 +76,6 @@ svg {
 @keyframes two2three {
   0% {
     z-index: 100;
-    transform: scale(1) translate3d(0, 0, 0);
   }
 
   100% {
@@ -99,7 +87,41 @@ svg {
 @keyframes three2one {
   0% {
     z-index: 10;
-    transform: scale(0.85) translate3d(-85%, -10%, 0);
+  }
+
+  100% {
+    z-index: 10;
+    transform: scale(0.85) translate3d(-176.5%, -10%, 0);
+  }
+}
+
+/* To The Left */
+
+@keyframes two2one {
+  0% {
+    z-index: 10;
+  }
+
+  100% {
+    z-index: 100;
+    transform: scale(1) translate3d(0%, 0%, 0);
+  }
+}
+
+@keyframes three2two {
+  0% {
+    z-index: 100;
+  }
+
+  100% {
+    z-index: 10;
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes one2three {
+  0% {
+    z-index: 10;
   }
 
   100% {
