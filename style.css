@@ -4,7 +4,10 @@ html {
   padding: 0;
   margin: 0%;
 }
-
+:root {
+  --ease-in: cubic-bezier(0.32, 0, 0.67, 0);
+  --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+}
 body {
   background: linear-gradient(45deg, goldenrod, rebeccapurple);
   width: 100vw;
@@ -25,46 +28,81 @@ svg {
   grid-template: 1fr / 1fr 1fr 1fr;
 }
 
+/* X-Axis */
 .slot1 {
   will-change: transform;
   grid-column: 1;
   grid-row: 1;
-  width: 90%;
-  height: auto;
   z-index: 10;
   transform: scale(0.85) translate3d(85%, -10%, 0);
 }
 
-.moveOneToTwo {
-  animation: 1s ease one2two forwards;
+/* Y-Axis */
+.slot1::after {
+  will-change: transform;
+  display: block;
+  content: url(/assets/egg1.svg);
+  width: 100%;
+  height: 100%;
+  z-index: 10;
 }
 
+/* X-Axis */
 .slot2 {
   will-change: transform;
   grid-column: 2;
   grid-row: 1;
-  width: 90%;
-  height: auto;
-  z-index: 100;
+  z-index: 10;
+  /* animation: 2s var(--ease-in) two2threeXAxis forwards infinite alternate; */
 }
 
-.moveTwoToThree {
-  animation: 1s ease two2three forwards;
+/* .moveTwoToThreeXAxis {
+  animation: 2s var(--ease-in) two2threeXAxis forwards infinite alternate;
+} */
+
+/* Y-Axis */
+.slot2::after {
+  will-change: transform;
+  display: block;
+  content: url(/assets/egg2.svg);
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  /* animation: 2s var(--ease-out) two2threeYAxis forwards infinite alternate; */
 }
 
+/* .moveTwoToThreeYAxis {
+  animation: 2s var(--ease-out) two2threeYAxis forwards infinite alternate;
+} */
+
+/* X-Axis */
 .slot3 {
   will-change: transform;
   grid-column: 3;
   grid-row: 1;
-  width: 90%;
-  height: auto;
   z-index: 10;
-  transform: scale(0.85) translate3d(-85%, -10%, 0);
+  /* transform: scale(0.85) translate3d(85%, -10%, 0); */
+  /* animation: 2s var(--ease-in) three2oneXAxis forwards infinite alternate; */
 }
 
-.moveThreeToOne {
-  animation: 1s ease three2one forwards;
+/* .moveThreeToOneXAxis {
+  animation: 2s var(--ease-in) one2twoYAxis forwards infinite alternate;
+} */
+
+/* Y-Axis */
+.slot3::after {
+  will-change: transform;
+  display: block;
+  content: url(/assets/egg3.svg);
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  /* animation: 2s var(--ease-out) three2oneYAxis forwards infinite alternate; */
 }
+
+/* .moveThreeToOneYAxis {
+  animation: 2s var(--ease-out) three2oneYAxis forwards infinite alternate;
+} */
 
 .btn-group {
   display: flex;
@@ -72,36 +110,37 @@ svg {
   padding: 50px;
 }
 
-@keyframes one2two {
+@keyframes one2twoXAxis {
   0% {
-    z-index: 10;
-    transform: scale(0.85) translate3d(85%, -10%, 0);
   }
-
   100% {
     z-index: 100;
-    transform: scale(1) translate3d(111%, 0%, 0);
+    transform: translateX(100%);
   }
 }
-
+@keyframes one2twoYAxis {
+  0% {
+  }
+  100% {
+    z-index: 100;
+    transform: translateY(0%);
+  }
+}
 @keyframes two2three {
   0% {
     z-index: 100;
     transform: scale(1) translate3d(0, 0, 0);
   }
-
   100% {
     z-index: 10;
     transform: scale(0.85) translate3d(45.5%, -10%, 0);
   }
 }
-
 @keyframes three2one {
   0% {
     z-index: 10;
     transform: scale(0.85) translate3d(-85%, -10%, 0);
   }
-
   100% {
     z-index: 10;
     transform: scale(0.85) translate3d(-176.5%, -10%, 0);
