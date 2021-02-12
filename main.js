@@ -1,98 +1,72 @@
 const btnLeft = document.querySelector(".btn-left");
 const btnRight = document.querySelector(".btn-right");
 
-function move(item, from, to) {
+function resetItem(item, from, to) {
   console.log("animation done");
   item.classList.remove(`slot-${from}`);
   item.classList.add(`slot-${to}`);
   item.style.animation = "";
 }
 
-function rotateEggsToRight() {
-  const eggInSlot1 = document.querySelector(".slot-one");
-  const eggInSlot2 = document.querySelector(".slot-two");
-  const eggInSlot3 = document.querySelector(".slot-three");
-
-  if (eggInSlot1) {
-    eggInSlot1.style.animation = `1s ease one2two forwards`;
-    eggInSlot1.addEventListener(
+function moveItem(item, curr, next) {
+  if (item) {
+    item.style.animation = `1s ease ${curr}2${next} forwards`;
+    item.addEventListener(
       "animationend",
       () => {
-        return move(eggInSlot1, "one", "two");
+        return resetItem(item, curr, next);
       },
       {
         once: true,
       }
     );
-  } else {
-    console.log("no egg in slot1");
-  }
-
-  if (eggInSlot2) {
-    eggInSlot2.style.animation = `1s ease two2three forwards`;
-    eggInSlot2.addEventListener(
-      "animationend",
-      () => {
-        return move(eggInSlot2, "two", "three");
-      },
-      { once: true }
-    );
-  } else {
-    console.log("no egg in slot2");
-  }
-
-  if (eggInSlot3) {
-    eggInSlot3.style.animation = `1s ease three2one forwards`;
-    eggInSlot3.addEventListener(
-      "animationend",
-      () => {
-        return move(eggInSlot3, "three", "one");
-      },
-      { once: true }
-    );
-  } else {
-    console.log("no egg in slot3");
   }
 }
+
 function rotateEggsToLeft() {
-  const eggInSlot1 = document.querySelector(".slot-one");
-  const eggInSlot2 = document.querySelector(".slot-two");
-  const eggInSlot3 = document.querySelector(".slot-three");
+  const one = document.querySelector(".slot-one");
+  const two = document.querySelector(".slot-two");
+  const three = document.querySelector(".slot-three");
 
-  if (eggInSlot1) {
-    eggInSlot1.style.animation = `1s ease one2three forwards`;
-    eggInSlot1.addEventListener(
-      "animationend",
-      () => {
-        return move(eggInSlot1, "one", "three");
+  [one, two, three].forEach((item, index) => {
+    const number = {
+      curr: {
+        0: "one",
+        1: "two",
+        2: "three",
       },
-      { once: true }
-    );
-  }
+      next: {
+        0: "three",
+        1: "one",
+        2: "two",
+      },
+    };
 
-  if (eggInSlot2) {
-    eggInSlot2.style.animation = `1s ease two2one forwards`;
-    eggInSlot2.addEventListener(
-      "animationend",
-      () => {
-        return move(eggInSlot2, "two", "one");
-      },
-      {
-        once: true,
-      }
-    );
-  }
+    moveItem(item, number.curr[index], number.next[index]);
+  });
+}
 
-  if (eggInSlot3) {
-    eggInSlot3.style.animation = `1s ease three2two forwards`;
-    eggInSlot3.addEventListener(
-      "animationend",
-      () => {
-        return move(eggInSlot3, "three", "two");
+function rotateEggsToRight() {
+  const one = document.querySelector(".slot-one");
+  const two = document.querySelector(".slot-two");
+  const three = document.querySelector(".slot-three");
+
+  [one, two, three].forEach((item, index) => {
+    const number = {
+      curr: {
+        0: "one",
+        1: "two",
+        2: "three",
       },
-      { once: true }
-    );
-  }
+      next: {
+        0: "two",
+        1: "three",
+        2: "one",
+      },
+    };
+
+    moveItem(item, number.curr[index], number.next[index]);
+  });
 }
 
 btnLeft.addEventListener("click", rotateEggsToLeft);
