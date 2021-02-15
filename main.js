@@ -140,6 +140,6 @@ btnRight.addEventListener("click", rotateEggsToRight);
 btnRandomSpin.addEventListener("click", randomSpin);
 items.forEach((item) =>
   item.addEventListener("click", () => {
-    alert("You chose this egg and won some freespins");
+    showWinningPopup();
   })
 );
