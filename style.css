@@ -22,7 +22,6 @@ body {
 }
 
 /* Plate Implementation */
-
 .container {
   position: relative;
   display: flex;
@@ -39,7 +38,7 @@ body {
   width: 100%;
   height: 100%;
   position: absolute;
-  border: 4px solid brown;
+  /* border: 4px solid brown; */
   border-radius: 50%;
   margin: auto;
   transform-style: preserve-3d;
@@ -51,7 +50,6 @@ body {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  /* animation: plateThreeThirdTurn 3s linear forwards; */
 }
 .electron {
   position: absolute;
@@ -63,7 +61,6 @@ body {
   transform: rotateX(-90deg);
   transform-style: preserve-3d;
   z-index: 100;
-  /* animation: itemThreeThirdTurn 3s linear forwards; */
 }
 
 .electron1 {
