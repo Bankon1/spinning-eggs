@@ -2,6 +2,10 @@ const btnLeft = document.querySelector(".btn-left");
 const btnRight = document.querySelector(".btn-right");
 const btnRandomSpin = document.querySelector(".random-spin-btn");
 
+async function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 let position = 1;
 const time = "1.5s";
 function rotateEggsToLeft() {
@@ -76,27 +80,47 @@ function rotateEggsToRight() {
   }
 }
 
-function randomSpin() {
+async function randomSpin() {
   const time = "2s";
   const plate = document.querySelector(".plate");
   const electrons = document.querySelectorAll(".electron");
-  plate.style.animation = `plateFullTurn ${time} linear forwards`;
-  electrons.forEach(
-    (electron) =>
-      (electron.style.animation = `itemFullTurn ${time} linear forwards`)
-  );
-  plate.addEventListener(
-    "animationend",
-    () => {
-      plate.style.animation = "";
-      electrons.forEach((electron) => (electron.style.animation = ""));
-    },
-    {
-      once: true,
-    }
-  );
 
-  
+  const additionalThirdTurns = Math.floor(Math.random() * 3) + 1;
+  let currentState = 0;
+
+  const states = [
+    () => {
+      plate.style.animation = `plateThreeThirdLeftTurn ${time} linear forwards`;
+      electrons.forEach(
+        (electron) =>
+          (electron.style.animation = `itemThreeThirdLeftTurn ${time} linear forwards`)
+      );
+    },
+
+    () => {
+      plate.style.animation = `plateTwoThirdLeftTurn ${time} linear forwards`;
+      electrons.forEach(
+        (electron) =>
+          (electron.style.animation = `itemTwoThirdLeftTurn ${time} linear forwards`)
+      );
+    },
+    () => {
+      plate.style.animation = `plateOneThirdLeftTurn ${time} linear forwards`;
+      electrons.forEach(
+        (electron) =>
+          (electron.style.animation = `itemOneThirdLeftTurn ${time} linear forwards`)
+      );
+    },
+  ];
+
+  const animateToNextState = () => {
+    requestAnimationFrame(() => {
+      states[++currentState % states.length]();
+    });
+  };
+
+  plate.addEventListener("animationend", () => animateToNextState());
+  animateToNextState();
 }
 
 btnLeft.addEventListener("click", rotateEggsToLeft);
