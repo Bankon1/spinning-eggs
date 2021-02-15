@@ -90,8 +90,8 @@ body {
   right: calc(var(--size) * -0.5);
 }
 
-/* One Third Turn */
-@keyframes plateOneThirdTurn {
+/* One Third Left Turn */
+@keyframes plateOneThirdLeftTurn {
   from {
     transform: rotate3d(0, 0, 1, 0deg);
   }
@@ -100,7 +100,7 @@ body {
   }
 }
 
-@keyframes itemOneThirdTurn {
+@keyframes itemOneThirdLeftTurn {
   0% {
     transform: rotateX(-90deg) rotateY(0deg);
   }
@@ -110,7 +110,7 @@ body {
 }
 
 /* Two Third Turn */
-@keyframes plateTwoThirdTurn {
+@keyframes plateTwoThirdLeftTurn {
   from {
     transform: rotate3d(0, 0, 1, 120deg);
   }
@@ -119,7 +119,7 @@ body {
   }
 }
 
-@keyframes itemTwoThirdTurn {
+@keyframes itemTwoThirdLeftTurn {
   0% {
     transform: rotateX(-90deg) rotateY(0.33turn);
   }
@@ -128,7 +128,7 @@ body {
   }
 }
 /* Three Third Turn */
-@keyframes plateThreeThirdTurn {
+@keyframes plateThreeThirdLeftTurn {
   from {
     transform: rotate3d(0, 0, 1, 240deg);
   }
@@ -137,13 +137,70 @@ body {
   }
 }
 
-@keyframes itemThreeThirdTurn {
+@keyframes itemThreeThirdLeftTurn {
   0% {
     transform: rotateX(-90deg) rotateY(0.66turn);
   }
 
   100% {
     transform: rotateX(-90deg) rotateY(1turn);
+  }
+}
+
+/* One Third Right Turn */
+@keyframes plateOneThirdRightTurn {
+  from {
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+  to {
+    transform: rotate3d(0, 0, 1, -120deg);
+  }
+}
+
+@keyframes itemOneThirdRightTurn {
+  0% {
+    transform: rotateX(-90deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(-90deg) rotateY(-0.33turn);
+  }
+}
+
+/* Two Third Turn */
+@keyframes plateTwoThirdRightTurn {
+  from {
+    transform: rotate3d(0, 0, 1, -120deg);
+  }
+  to {
+    transform: rotate3d(0, 0, 1, -240deg);
+  }
+}
+
+@keyframes itemTwoThirdRightTurn {
+  0% {
+    transform: rotateX(-90deg) rotateY(-0.33turn);
+  }
+  100% {
+    transform: rotateX(-90deg) rotateY(-0.66turn);
+  }
+}
+/* Three Third Turn */
+@keyframes plateThreeThirdRightTurn {
+  from {
+    transform: rotate3d(0, 0, 1, -240deg);
+  }
+  to {
+    transform: rotate3d(0, 0, 1, -360deg);
+  }
+}
+
+@keyframes itemThreeThirdRightTurn {
+  0% {
+    transform: rotateX(-90deg) rotateY(-0.66turn);
+  }
+
+  100% {
+    transform: rotateX(-90deg) rotateY(-1turn);
   }
 }
 
