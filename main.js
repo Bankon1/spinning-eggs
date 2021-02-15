@@ -1,73 +1,45 @@
-// const btnLeft = document.querySelector(".btn-left");
-// const btnRight = document.querySelector(".btn-right");
+const btnLeft = document.querySelector(".btn-left");
+const btnRight = document.querySelector(".btn-right");
 
-// function resetItem(item, from, to) {
-//   console.log("animation done");
-//   item.classList.remove(`slot-${from}`);
-//   item.classList.add(`slot-${to}`);
-//   item.style.animation = "";
-// }
+let position = 1;
+function rotateEggsToLeft() {
+  const plate = document.querySelector(".plate");
+  const electrons = document.querySelectorAll(".electron");
+  if (position === 1) {
+    plate.style.animation = "plateOneThirdTurn 1.5s ease forwards";
+    electrons.forEach(
+      (electron) =>
+        (electron.style.animation = "itemOneThirdTurn 1.5s ease forwards")
+    );
+    plate.addEventListener("animationend", () => {
+      position = 2;
+    });
+  }
+  if (position === 2) {
+    plate.style.animation = " plateTwoThirdTurn 1.5s ease forwards";
+    electrons.forEach(
+      (electron) =>
+        (electron.style.animation = "itemTwoThirdTurn 1.5s ease forwards")
+    );
+    plate.addEventListener("animationend", () => {
+      position = 3;
+    });
+  }
+  if (position === 3) {
+    plate.style.animation = " plateThreeThirdTurn 1.5s ease forwards";
+    electrons.forEach(
+      (electron) =>
+        (electron.style.animation = "itemThreeThirdTurn 1.5s ease forwards")
+    );
+    plate.addEventListener("animationend", () => {
+      position = 1;
+    });
+  }
+}
 
-// function moveItem(item, curr, next) {
-//   if (item) {
-//     item.style.animation = `1s ease ${curr}2${next} forwards`;
-//     item.addEventListener(
-//       "animationend",
-//       () => {
-//         return resetItem(item, curr, next);
-//       },
-//       {
-//         once: true,
-//       }
-//     );
-//   }
-// }
+function rotateEggsToRight() {
+  console.log("rotating to the right");
+}
 
-// function rotateEggsToLeft() {
-//   const one = document.querySelector(".slot-one");
-//   const two = document.querySelector(".slot-two");
-//   const three = document.querySelector(".slot-three");
-
-//   [one, two, three].forEach((item, index) => {
-//     const number = {
-//       curr: {
-//         0: "one",
-//         1: "two",
-//         2: "three",
-//       },
-//       next: {
-//         0: "three",
-//         1: "one",
-//         2: "two",
-//       },
-//     };
-
-//     moveItem(item, number.curr[index], number.next[index]);
-//   });
-// }
-
-// function rotateEggsToRight() {
-//   const one = document.querySelector(".slot-one");
-//   const two = document.querySelector(".slot-two");
-//   const three = document.querySelector(".slot-three");
-
-//   [one, two, three].forEach((item, index) => {
-//     const number = {
-//       curr: {
-//         0: "one",
-//         1: "two",
-//         2: "three",
-//       },
-//       next: {
-//         0: "two",
-//         1: "three",
-//         2: "one",
-//       },
-//     };
-
-//     moveItem(item, number.curr[index], number.next[index]);
-//   });
-// }
-
-// btnLeft.addEventListener("click", rotateEggsToLeft);
-// btnRight.addEventListener("click", rotateEggsToRight);
+btnLeft.addEventListener("click", rotateEggsToLeft);
+btnRight.addEventListener("click", rotateEggsToRight);
