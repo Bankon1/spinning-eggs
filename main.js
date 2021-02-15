@@ -81,11 +81,11 @@ function rotateEggsToRight() {
 }
 
 async function randomSpin() {
-  const time = "0.5s";
+  const time = "1.2s";
   const plate = document.querySelector(".plate");
   const electrons = document.querySelectorAll(".electron");
 
-  const additionalThirdTurns = Math.floor(Math.random() * 30) + 1;
+  const additionalThirdTurns = Math.floor(Math.random() * 20) + 1;
   console.log(additionalThirdTurns);
   let currentState = 0;
 
