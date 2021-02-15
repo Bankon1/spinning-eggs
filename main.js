@@ -77,8 +77,11 @@ function rotateEggsToRight() {
 }
 
 async function randomSpin() {
+  //remove and replate the old plate to get rid of all potential hung up event listeners
+  const oldPlate = document.querySelector(".plate");
+  const plate = oldPlate.cloneNode(true);
+  oldPlate.parentNode.replaceChild(plate, oldPlate);
   const time = "0.5s";
-  const plate = document.querySelector(".plate");
   const electrons = document.querySelectorAll(".electron");
 
   const additionalTurns = Math.floor(Math.random() * 20) + 1;
@@ -117,7 +120,10 @@ async function randomSpin() {
     }
   };
 
-  plate.addEventListener("animationend", () => animateToNextState());
+  plate.addEventListener("animationend", () => {
+    console.log("done");
+    animateToNextState();
+  });
   animateToNextState();
 }
 
