@@ -2,10 +2,6 @@ const btnLeft = document.querySelector(".btn-left");
 const btnRight = document.querySelector(".btn-right");
 const btnRandomSpin = document.querySelector(".random-spin-btn");
 
-async function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 let position = 1;
 const time = "1.5s";
 function rotateEggsToLeft() {
@@ -85,8 +81,8 @@ async function randomSpin() {
   const plate = document.querySelector(".plate");
   const electrons = document.querySelectorAll(".electron");
 
-  const additionalThirdTurns = Math.floor(Math.random() * 20) + 1;
-  console.log(additionalThirdTurns);
+  const additionalTurns = Math.floor(Math.random() * 20) + 1;
+
   let currentState = 0;
 
   const states = [
@@ -114,18 +110,14 @@ async function randomSpin() {
   ];
 
   const animateToNextState = () => {
-    console.log("click");
-    requestAnimationFrame(() => {
-      if (additionalThirdTurns > currentState) {
+    if (additionalTurns > currentState) {
+      requestAnimationFrame(() => {
         states[++currentState % states.length]();
-        console.log(currentState);
-      }
-    });
+      });
+    }
   };
 
-  plate.addEventListener("animationend", () => animateToNextState(), {
-    once: true,
-  });
+  plate.addEventListener("animationend", () => animateToNextState());
   animateToNextState();
 }
 
