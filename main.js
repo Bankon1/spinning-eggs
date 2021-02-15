@@ -86,7 +86,7 @@ function randomSpin() {
   const time = "0.5s";
   const electrons = document.querySelectorAll(".electron");
 
-  const additionalTurns = Math.floor(Math.random() * 20) + 1;
+  const additionalTurns = Math.floor(Math.random() * 10) + 1;
 
   let currentState = 0;
 
@@ -97,6 +97,10 @@ function randomSpin() {
         (electron) =>
           (electron.style.animation = `itemThreeThirdLeftTurn ${time} linear forwards`)
       );
+      setTimeout(() => {
+        const event = new CustomEvent("rotationdone");
+        plate.dispatchEvent(event);
+      }, 500);
     },
     () => {
       plate.style.animation = `plateOneThirdLeftTurn ${time} linear forwards`;
@@ -104,6 +108,10 @@ function randomSpin() {
         (electron) =>
           (electron.style.animation = `itemOneThirdLeftTurn ${time} linear forwards`)
       );
+      setTimeout(() => {
+        const event = new CustomEvent("rotationdone");
+        plate.dispatchEvent(event);
+      }, 500);
     },
     () => {
       plate.style.animation = `plateTwoThirdLeftTurn ${time} linear forwards`;
@@ -111,6 +119,10 @@ function randomSpin() {
         (electron) =>
           (electron.style.animation = `itemTwoThirdLeftTurn ${time} linear forwards`)
       );
+      setTimeout(() => {
+        const event = new CustomEvent("rotationdone");
+        plate.dispatchEvent(event);
+      }, 500);
     },
   ];
 
@@ -121,14 +133,18 @@ function randomSpin() {
       });
     }
   };
-
-  plate.addEventListener("animationend", () => {
+  let counter = 0;
+  plate.addEventListener("rotationdone", () => {
     animateToNextState();
+    counter++;
+    console.log("Additional Turns", additionalTurns, "Counter", counter);
+    if (counter === additionalTurns) {
+      setTimeout(() => {
+        showWinningPopup();
+      }, 500);
+    }
   });
   animateToNextState();
-  setTimeout(() => {
-    showWinningPopup();
-  }, 2000);
 }
 
 function showWinningPopup() {
