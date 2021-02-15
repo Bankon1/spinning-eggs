@@ -87,13 +87,6 @@ async function randomSpin() {
 
   const states = [
     () => {
-      plate.style.animation = `plateTwoThirdLeftTurn ${time} linear forwards`;
-      electrons.forEach(
-        (electron) =>
-          (electron.style.animation = `itemTwoThirdLeftTurn ${time} linear forwards`)
-      );
-    },
-    () => {
       plate.style.animation = `plateThreeThirdLeftTurn ${time} linear forwards`;
       electrons.forEach(
         (electron) =>
@@ -105,6 +98,13 @@ async function randomSpin() {
       electrons.forEach(
         (electron) =>
           (electron.style.animation = `itemOneThirdLeftTurn ${time} linear forwards`)
+      );
+    },
+    () => {
+      plate.style.animation = `plateTwoThirdLeftTurn ${time} linear forwards`;
+      electrons.forEach(
+        (electron) =>
+          (electron.style.animation = `itemTwoThirdLeftTurn ${time} linear forwards`)
       );
     },
   ];
