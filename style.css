@@ -3,10 +3,11 @@ body,
 html {
   padding: 0;
   margin: 0%;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-  background: linear-gradient(45deg, goldenrod, rebeccapurple);
+  background: #ef4136;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -15,14 +16,77 @@ body {
   flex-direction: column;
 }
 
+h1 {
+  font-weight: bolder;
+}
+p {
+  padding: 30px;
+  text-align: center;
+  line-height: 1.2em;
+  font-size: 17px;
+}
+
 .btn-group {
   display: flex;
-  gap: 40px;
-  padding: 50px;
+}
+
+.btn-right {
+  background-color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  position: relative;
+  top: -300%;
+}
+.btn-left {
+  background-color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  position: relative;
+  top: -300%;
+}
+
+.random-spin-btn {
+  display: block;
+  background-color: #ffe500;
+  font-weight: bold;
+  font-size: 14px;
+  border: none;
+  padding: 1rem;
+  border-radius: 50px;
+}
+.triangle-right {
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 10px solid black;
+  position: relative;
+  right: -2px;
+}
+
+.triangle-left {
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 10px solid black;
+  position: relative;
+  right: 2px;
 }
 
 /* Plate Implementation */
 .container {
+  margin-top: 150px;
   position: relative;
   display: flex;
   justify-items: center;
