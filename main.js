@@ -81,7 +81,7 @@ function rotateEggsToRight() {
 }
 
 async function randomSpin() {
-  const time = "1.2s";
+  const time = "0.5s";
   const plate = document.querySelector(".plate");
   const electrons = document.querySelectorAll(".electron");
 
@@ -114,6 +114,7 @@ async function randomSpin() {
   ];
 
   const animateToNextState = () => {
+    console.log("click");
     requestAnimationFrame(() => {
       if (additionalThirdTurns > currentState) {
         states[++currentState % states.length]();
@@ -122,7 +123,9 @@ async function randomSpin() {
     });
   };
 
-  plate.addEventListener("animationend", () => animateToNextState());
+  plate.addEventListener("animationend", () => animateToNextState(), {
+    once: true,
+  });
   animateToNextState();
 }
 
