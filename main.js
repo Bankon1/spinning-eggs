@@ -1,6 +1,7 @@
 const btnLeft = document.querySelector(".btn-left");
 const btnRight = document.querySelector(".btn-right");
 const btnRandomSpin = document.querySelector(".random-spin-btn");
+const items = document.querySelectorAll(".item");
 
 let position = 1;
 const time = "1.5s";
@@ -121,12 +122,23 @@ async function randomSpin() {
   };
 
   plate.addEventListener("animationend", () => {
-    console.log("done");
     animateToNextState();
   });
   animateToNextState();
+  setTimeout(() => {
+    showWinningPopup();
+  }, 2000);
 }
 
+function showWinningPopup() {
+  const popup = document.querySelector(".winning-popup");
+  popup.style.display = "flex";
+}
 btnLeft.addEventListener("click", rotateEggsToLeft);
 btnRight.addEventListener("click", rotateEggsToRight);
 btnRandomSpin.addEventListener("click", randomSpin);
+items.forEach((item) =>
+  item.addEventListener("click", () => {
+    alert("You chose this egg and won some freespins");
+  })
+);
