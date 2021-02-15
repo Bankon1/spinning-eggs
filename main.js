@@ -81,27 +81,27 @@ function rotateEggsToRight() {
 }
 
 async function randomSpin() {
-  const time = "2s";
+  const time = "0.5s";
   const plate = document.querySelector(".plate");
   const electrons = document.querySelectorAll(".electron");
 
-  const additionalThirdTurns = Math.floor(Math.random() * 3) + 1;
+  const additionalThirdTurns = Math.floor(Math.random() * 30) + 1;
+  console.log(additionalThirdTurns);
   let currentState = 0;
 
   const states = [
-    () => {
-      plate.style.animation = `plateThreeThirdLeftTurn ${time} linear forwards`;
-      electrons.forEach(
-        (electron) =>
-          (electron.style.animation = `itemThreeThirdLeftTurn ${time} linear forwards`)
-      );
-    },
-
     () => {
       plate.style.animation = `plateTwoThirdLeftTurn ${time} linear forwards`;
       electrons.forEach(
         (electron) =>
           (electron.style.animation = `itemTwoThirdLeftTurn ${time} linear forwards`)
+      );
+    },
+    () => {
+      plate.style.animation = `plateThreeThirdLeftTurn ${time} linear forwards`;
+      electrons.forEach(
+        (electron) =>
+          (electron.style.animation = `itemThreeThirdLeftTurn ${time} linear forwards`)
       );
     },
     () => {
@@ -115,7 +115,10 @@ async function randomSpin() {
 
   const animateToNextState = () => {
     requestAnimationFrame(() => {
-      states[++currentState % states.length]();
+      if (additionalThirdTurns > currentState) {
+        states[++currentState % states.length]();
+        console.log(currentState);
+      }
     });
   };
 
