@@ -77,7 +77,8 @@ function rotateEggsToRight() {
   }
 }
 
-async function randomSpin() {
+function randomSpin() {
+  btnRandomSpin.disabled = true;
   //remove and replate the old plate to get rid of all potential hung up event listeners
   const oldPlate = document.querySelector(".plate");
   const plate = oldPlate.cloneNode(true);
