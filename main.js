@@ -4,76 +4,151 @@ const btnRandomSpin = document.querySelector(".random-spin-btn");
 const items = document.querySelectorAll(".item");
 
 let position = 1;
-const time = "1.5s";
-function rotateEggsToLeft() {
-  const plate = document.querySelector(".plate");
-  const electrons = document.querySelectorAll(".electron");
-  if (position === 1) {
-    plate.style.animation = `plateOneThirdLeftTurn ${time} ease forwards`;
+const duration = "1.5s";
+const easing = "ease";
+const plate = document.querySelector(".plate");
+const electrons = document.querySelectorAll(".electron");
+
+function oneThirdLeftTurn(duration, easing, nextPosition) {
+  return new Promise((resolve) => {
+    plate.style.animation = `plateOneThirdLeftTurn ${duration} ${easing} forwards`;
     electrons.forEach(
       (electron) =>
-        (electron.style.animation = `itemOneThirdLeftTurn ${time} ease forwards`)
+        (electron.style.animation = `itemOneThirdLeftTurn ${duration} ${easing} forwards`)
     );
-    plate.addEventListener("animationend", () => {
-      position = 2;
+    plate.addEventListener("animationend", (e) => {
+      const target = e.target;
+      if (target.matches(".plate")) {
+        resolve(nextPosition);
+      }
     });
+  });
+}
+
+function twoThirdLeftTurn(duration, easing, nextPosition) {
+  return new Promise((resolve) => {
+    plate.style.animation = `plateTwoThirdLeftTurn ${duration} ${easing} forwards`;
+    electrons.forEach(
+      (electron) =>
+        (electron.style.animation = `itemTwoThirdLeftTurn ${duration} ${easing} forwards`)
+    );
+    plate.addEventListener("animationend", (e) => {
+      const target = e.target;
+      if (target.matches(".plate")) {
+        resolve(nextPosition);
+      }
+    });
+  });
+}
+
+function threeThirdLeftTurn(duration, easing, nextPosition) {
+  return new Promise((resolve) => {
+    plate.style.animation = `plateThreeThirdLeftTurn ${duration} ${easing} forwards`;
+    electrons.forEach(
+      (electron) =>
+        (electron.style.animation = `itemThreeThirdLeftTurn ${duration} ${easing} forwards`)
+    );
+    plate.addEventListener("animationend", (e) => {
+      const target = e.target;
+      if (target.matches(".plate")) {
+        resolve(nextPosition);
+      }
+    });
+  });
+}
+
+function oneThirdRightTurn(duration, easing, nextPosition) {
+  return new Promise((resolve) => {
+    plate.style.animation = `plateOneThirdRightTurn ${duration} ${easing} forwards`;
+    electrons.forEach(
+      (electron) =>
+        (electron.style.animation = `itemOneThirdRightTurn ${duration} ${easing} forwards`)
+    );
+    plate.addEventListener("animationend", (e) => {
+      const target = e.target;
+      if (target.matches(".plate")) {
+        resolve(nextPosition);
+      }
+    });
+  });
+}
+
+function twoThirdRightTurn(duration, easing, nextPosition) {
+  return new Promise((resolve) => {
+    plate.style.animation = `plateTwoThirdRightTurn ${duration} ${easing} forwards`;
+    electrons.forEach(
+      (electron) =>
+        (electron.style.animation = `itemTwoThirdRightTurn ${duration} ${easing} forwards`)
+    );
+    plate.addEventListener("animationend", (e) => {
+      const target = e.target;
+      if (target.matches(".plate")) {
+        resolve(nextPosition);
+      }
+    });
+  });
+}
+
+function threeThirdRightTurn(duration, easing, nextPosition) {
+  return new Promise((resolve) => {
+    plate.style.animation = `plateThreeThirdRightTurn ${duration} ${easing} forwards`;
+    electrons.forEach(
+      (electron) =>
+        (electron.style.animation = `itemThreeThirdRightTurn ${duration} ${easing} forwards`)
+    );
+    plate.addEventListener("animationend", (e) => {
+      const target = e.target;
+      if (target.matches(".plate")) {
+        resolve(nextPosition);
+      }
+    });
+  });
+}
+
+function showWinningPopup() {
+  const popup = document.querySelector(".winning-popup");
+  popup.style.display = "flex";
+}
+
+function rotateEggsToLeft() {
+  if (position === 1) {
+    const nextPosition = 2;
+    oneThirdLeftTurn(duration, easing, nextPosition).then(
+      (currPos) => (position = currPos)
+    );
   }
   if (position === 2) {
-    plate.style.animation = `plateTwoThirdLeftTurn ${time} ease forwards`;
-    electrons.forEach(
-      (electron) =>
-        (electron.style.animation = `itemTwoThirdLeftTurn ${time} ease forwards`)
+    const nextPosition = 3;
+    twoThirdLeftTurn(duration, easing, nextPosition).then(
+      (currPos) => (position = currPos)
     );
-    plate.addEventListener("animationend", () => {
-      position = 3;
-    });
   }
   if (position === 3) {
-    plate.style.animation = `plateThreeThirdLeftTurn ${time} ease forwards`;
-    electrons.forEach(
-      (electron) =>
-        (electron.style.animation = `itemThreeThirdLeftTurn ${time} ease forwards`)
+    const nextPosition = 1;
+    threeThirdLeftTurn(duration, easing, nextPosition).then(
+      (currPos) => (position = currPos)
     );
-    plate.addEventListener("animationend", () => {
-      position = 1;
-    });
   }
 }
 
 function rotateEggsToRight() {
-  const plate = document.querySelector(".plate");
-  const electrons = document.querySelectorAll(".electron");
   if (position === 1) {
-    plate.style.animation = `plateOneThirdRightTurn ${time} ease forwards`;
-    electrons.forEach(
-      (electron) =>
-        (electron.style.animation = `itemOneThirdRightTurn ${time} ease forwards`)
+    const nextPosition = 3;
+    oneThirdRightTurn(duration, easing, nextPosition).then(
+      (currPos) => (position = currPos)
     );
-    plate.addEventListener("animationend", () => {
-      position = 3;
-      console.log(position);
-    });
-  }
-  if (position === 2) {
-    plate.style.animation = `plateThreeThirdRightTurn ${time} ease forwards`;
-    electrons.forEach(
-      (electron) =>
-        (electron.style.animation = `itemThreeThirdRightTurn ${time} ease forwards`)
-    );
-    plate.addEventListener("animationend", () => {
-      position = 1;
-      console.log(position);
-    });
   }
   if (position === 3) {
-    plate.style.animation = `plateTwoThirdRightTurn ${time} ease forwards`;
-    electrons.forEach(
-      (electron) =>
-        (electron.style.animation = `itemTwoThirdRightTurn ${time} ease forwards`)
+    const nextPosition = 2;
+    twoThirdRightTurn(duration, easing, nextPosition).then(
+      (currPos) => (position = currPos)
     );
-    plate.addEventListener("animationend", () => {
-      position = 2;
-    });
+  }
+  if (position === 2) {
+    const nextPosition = 1;
+    threeThirdRightTurn(duration, easing, nextPosition).then(
+      (currPos) => (position = currPos)
+    );
   }
 }
 
@@ -138,10 +213,6 @@ function randomSpin() {
   animateToNextState();
 }
 
-function showWinningPopup() {
-  const popup = document.querySelector(".winning-popup");
-  popup.style.display = "flex";
-}
 btnLeft.addEventListener("click", rotateEggsToLeft);
 btnRight.addEventListener("click", rotateEggsToRight);
 btnRandomSpin.addEventListener("click", randomSpin);
