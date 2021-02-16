@@ -97,10 +97,6 @@ function randomSpin() {
         (electron) =>
           (electron.style.animation = `itemThreeThirdLeftTurn ${time} linear forwards`)
       );
-      setTimeout(() => {
-        const event = new CustomEvent("rotationdone");
-        plate.dispatchEvent(event);
-      }, 500);
     },
     () => {
       plate.style.animation = `plateOneThirdLeftTurn ${time} linear forwards`;
@@ -108,10 +104,6 @@ function randomSpin() {
         (electron) =>
           (electron.style.animation = `itemOneThirdLeftTurn ${time} linear forwards`)
       );
-      setTimeout(() => {
-        const event = new CustomEvent("rotationdone");
-        plate.dispatchEvent(event);
-      }, 500);
     },
     () => {
       plate.style.animation = `plateTwoThirdLeftTurn ${time} linear forwards`;
@@ -119,10 +111,6 @@ function randomSpin() {
         (electron) =>
           (electron.style.animation = `itemTwoThirdLeftTurn ${time} linear forwards`)
       );
-      setTimeout(() => {
-        const event = new CustomEvent("rotationdone");
-        plate.dispatchEvent(event);
-      }, 500);
     },
   ];
 
@@ -134,14 +122,17 @@ function randomSpin() {
     }
   };
   let counter = 0;
-  plate.addEventListener("rotationdone", () => {
-    animateToNextState();
-    counter++;
-    console.log("Additional Turns", additionalTurns, "Counter", counter);
-    if (counter === additionalTurns) {
-      setTimeout(() => {
-        showWinningPopup();
-      }, 500);
+  plate.addEventListener("animationend", (e) => {
+    const target = e.target;
+    if (target.matches(".plate")) {
+      animateToNextState();
+      counter++;
+      console.log("Additional Turns", additionalTurns, "Counter", counter);
+      if (counter === additionalTurns) {
+        setTimeout(() => {
+          showWinningPopup();
+        }, 500);
+      }
     }
   });
   animateToNextState();
