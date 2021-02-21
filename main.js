@@ -4,10 +4,12 @@ const btnRandomSpin = document.querySelector(".random-spin-btn");
 const items = document.querySelectorAll(".item");
 
 let position = 1;
-const duration = "1.5s";
+const duration = "1s";
 const easing = "ease";
 const plate = document.querySelector(".plate");
 const electrons = document.querySelectorAll(".electron");
+
+/* The Items will rotate from position 1 to 2 to 3 in each direction*/
 
 function oneThirdLeftTurn(duration, easing, nextPosition) {
   return new Promise((resolve) => {
