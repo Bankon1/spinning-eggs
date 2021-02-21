@@ -118,11 +118,13 @@ p {
   display: flex;
   justify-items: center;
   align-items: center;
+  --item-size: clamp(250px, 40vw, 400px);
+  --plate-size: clamp(150px, 30vw, 300px);
 }
 
 .wrap {
-  width: 200px;
-  height: 200px;
+  width: var(--plate-size);
+  height: var(--plate-size);
 }
 
 .circle {
@@ -145,6 +147,7 @@ p {
   will-change: transform;
 }
 .electron {
+  will-change: transform;
   position: absolute;
   border-radius: 50%;
   width: 1px;
@@ -163,89 +166,88 @@ p {
 }
 
 .electron2 {
-  left: 10%;
-  bottom: 66%;
+  left: 7%;
+  bottom: 73%;
 }
 
 .electron3 {
-  right: 10%;
-  bottom: 66%;
+  right: 7%;
+  bottom: 73%;
 }
 
 .item {
   position: absolute;
-  --size: 200px;
-  width: var(--size);
-  height: var(--size);
-  bottom: calc(var(--size) * -0.2);
-  right: calc(var(--size) * -0.5);
+  width: var(--item-size);
+  height: var(--item-size);
+  bottom: calc(var(--item-size) * -0.2);
+  right: calc(var(--item-size) * -0.5);
   will-change: transform;
 }
 
 /* One Third Left Turn */
 @keyframes plateOneThirdLeftTurn {
   from {
-    transform: rotate3d(0, 0, 1, 0deg);
+    transform: rotate3d(0, 0, 1, 0turn);
   }
   to {
-    transform: rotate3d(0, 0, 1, 120deg);
+    transform: rotate3d(0, 0, 1, 0.33turn);
   }
 }
 
 @keyframes itemOneThirdLeftTurn {
   0% {
-    transform: rotateX(-90deg) rotateY(0deg);
+    transform: rotateX(-0.25turn) rotateY(0turn);
   }
   100% {
-    transform: rotateX(-90deg) rotateY(0.33turn);
+    transform: rotateX(-0.25turn) rotateY(0.33turn);
   }
 }
 
 /* Two Third Turn */
 @keyframes plateTwoThirdLeftTurn {
   from {
-    transform: rotate3d(0, 0, 1, 120deg);
+    transform: rotate3d(0, 0, 1, 0.33turn);
   }
   to {
-    transform: rotate3d(0, 0, 1, 240deg);
+    transform: rotate3d(0, 0, 1, 0.66turn);
   }
 }
 
 @keyframes itemTwoThirdLeftTurn {
   0% {
-    transform: rotateX(-90deg) rotateY(0.33turn);
+    transform: rotateX(-0.25turn) rotateY(0.33turn);
   }
   100% {
-    transform: rotateX(-90deg) rotateY(0.66turn);
+    transform: rotateX(-0.25turn) rotateY(0.66turn);
   }
 }
 /* Three Third Turn */
 @keyframes plateThreeThirdLeftTurn {
   from {
-    transform: rotate3d(0, 0, 1, 240deg);
+    transform: rotate3d(0, 0, 1, 0.66turn);
   }
   to {
-    transform: rotate3d(0, 0, 1, 360deg);
+    transform: rotate3d(0, 0, 1, 1turn);
   }
 }
 
 @keyframes itemThreeThirdLeftTurn {
   0% {
-    transform: rotateX(-90deg) rotateY(0.66turn);
+    transform: rotateX(-0.25turn) rotateY(0.66turn);
   }
 
   100% {
-    transform: rotateX(-90deg) rotateY(1turn);
+    transform: rotateX(-0.25turn) rotateY(1turn);
   }
 }
 
 /* One Third Right Turn */
 @keyframes plateOneThirdRightTurn {
   from {
-    transform: rotate3d(0, 0, 1, 0deg);
+    transform: rotate3d(0, 0, 1, 0turn);
   }
   to {
-    transform: rotate3d(0, 0, 1, -120deg);
+    transform: rotate3d(0, 0, 1, -0.33turn);
   }
 }
 
@@ -261,65 +263,37 @@ p {
 /* Two Third Turn */
 @keyframes plateTwoThirdRightTurn {
   from {
-    transform: rotate3d(0, 0, 1, -120deg);
+    transform: rotate3d(0, 0, 1, -0.33turn);
   }
   to {
-    transform: rotate3d(0, 0, 1, -240deg);
+    transform: rotate3d(0, 0, 1, -0.66turn);
   }
 }
 
 @keyframes itemTwoThirdRightTurn {
   0% {
-    transform: rotateX(-90deg) rotateY(-0.33turn);
+    transform: rotateX(-0.25turn) rotateY(-0.33turn);
   }
   100% {
-    transform: rotateX(-90deg) rotateY(-0.66turn);
+    transform: rotateX(-0.25turn) rotateY(-0.66turn);
   }
 }
 /* Three Third Turn */
 @keyframes plateThreeThirdRightTurn {
   from {
-    transform: rotate3d(0, 0, 1, -240deg);
+    transform: rotate3d(0, 0, 1, -0.66turn);
   }
   to {
-    transform: rotate3d(0, 0, 1, -360deg);
+    transform: rotate3d(0, 0, 1, -1turn);
   }
 }
 
 @keyframes itemThreeThirdRightTurn {
   0% {
-    transform: rotateX(-90deg) rotateY(-0.66turn);
+    transform: rotateX(-0.25turn) rotateY(-0.66turn);
   }
 
   100% {
-    transform: rotateX(-90deg) rotateY(-1turn);
-  }
-}
-
-/* FULL TURN */
-@keyframes plateFullTurn {
-  from {
-    transform: rotate3d(0, 0, 1, 0deg);
-  }
-  to {
-    transform: rotate3d(0, 0, 1, 360deg);
-  }
-}
-
-@keyframes itemFullTurn {
-  0% {
-    transform: rotateX(-90deg) rotateY(0deg);
-  }
-  25% {
-    transform: rotateX(-90deg) rotateY(0.25turn);
-  }
-  50% {
-    transform: rotateX(-90deg) rotateY(0.5turn);
-  }
-  75% {
-    transform: rotateX(-90deg) rotateY(0.75turn);
-  }
-  100% {
-    transform: rotateX(-90deg) rotateY(1turn);
+    transform: rotateX(-0.25turn) rotateY(-1turn);
   }
 }
